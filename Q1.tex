@@ -1,6 +1,149 @@
 %نام و نام خانوادگی:
 %شماره دانشجویی: 
 \مسئله{نام سؤال}
-
 \پاسخ{}
 
+ابتدا اپسیلون را حذف می‌کنیم.
+
+\begin{center}
+$S \rightarrow P \; | \; \epsilon$
+\\*
+$P \rightarrow () \; | \; (P) \; | \; ()P \; | \; (P)P$
+\end{center}
+به یافتن first و follow می‌پردازیم:
+
+\begin{center}
+    \begin{latin}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Non Terminal & first & follow \\ \hline
+            S            & (     & \$     \\ \hline
+            P            & (     & \$,)  \\ \hline
+        \end{tabular}
+    \end{latin}
+\end{center}
+
+سپس به ساخت DFA می‌پردازیم.
+
+\begin{latin}
+\begin{tikzpicture}
+  [>=latex, 
+    node distance=5cm, 
+    block/.style={state, rectangle, text width=8em}
+  ]
+
+    \node [block, label=above right: 0] (q0) 
+    {
+        \( S \rightarrow . P \hfill \$\)
+        \\
+        \( P \rightarrow . () \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P) \hfill ),\$\)
+        \\
+        \( P \rightarrow . ()P \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P)P \hfill ),\$\)
+    };
+
+    \node [block, label=above right: 1] (q1) [above of=q0]
+    {
+        \( S \rightarrow P . \hfill \$\)
+    };
+
+    \node [block, label=above right: 2] (q2) [right of=q0] 
+    {
+        \( P \rightarrow (.) \hfill ),\$\)
+        \\
+        \( P \rightarrow (.P) \hfill ),\$\)
+        \\
+        \( P \rightarrow (.)P \hfill ),\$\)
+        \\
+        \( P \rightarrow (.P)P \hfill ),\$\)
+
+        \( P \rightarrow . () \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P) \hfill ),\$\)
+        \\
+        \( P \rightarrow . ()P \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P)P \hfill ),\$\)
+    };
+
+    \node [block, label=above right: 3] (q3) [right of=q1] 
+    {
+        \( P \rightarrow (). \hfill ),\$\)
+        \\
+        \( P \rightarrow ().P \hfill ),\$\)
+
+        \( P \rightarrow . () \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P) \hfill ),\$\)
+        \\
+        \( P \rightarrow . ()P \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P)P \hfill ),\$\)
+    };
+
+    \node [block, label=above right: 4] (q4) [right of=q3] 
+    {
+        \( P \rightarrow ()P. \hfill ),\$\)
+    };
+
+    \node [block, label=above left: 5] (q5) [below of=q2] 
+    {
+        \( P \rightarrow (P.) \hfill ),\$\)
+        \( P \rightarrow (P.)P \hfill ),\$\)
+    };
+
+    \node [block, label=above right: 6] (q6) [right of=q2] 
+    {
+        \( P \rightarrow (P). \hfill ),\$\)
+        \\
+        \( P \rightarrow (P).P \hfill ),\$\)
+        \\
+        \( P \rightarrow . () \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P) \hfill ),\$\)
+        \\
+        \( P \rightarrow . ()P \hfill ),\$\)
+        \\
+        \( P \rightarrow . (P)P \hfill ),\$\)
+    };
+
+    \node [block, label=above right: 7] (q7) [below of=q6] 
+    {
+        \( P \rightarrow (P)P. \hfill ),\$\)
+    };
+
+
+    \path[->] (q0) edge [above] node[right] {P} (q1);
+    \path[->] (q0) edge [above] node[above] {(} (q2);
+    \path[->] (q2) edge [bend left] node[left] {)} (q3);
+    \path[->] (q3) edge [bend left] node[right] {(} (q2);
+    \path[->] (q3) edge [above] node[above] {P} (q4);
+    \path[->] (q2) edge [above] node[left] {P} (q5);
+    \path[->] (q5) edge [above] node[above] {)} (q6);
+    \path[->] (q6) edge [above] node[above] {(} (q2);
+    \path[->] (q6) edge [above] node[right] {P} (q7);
+             
+\end{tikzpicture} 
+\end{latin}
+
+جدول SLR(1) به صورت زیر است:
+
+\begin{latin}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+State & (  & )                       & \$                      & S & P  \\ \hline
+0     & S2 &                         &                         &   & G1 \\ \hline
+1     &    &                         & accept                  &   &    \\ \hline
+2     &    & S3                      &                         &   & G5 \\ \hline
+3     & S2 & R(P-\textgreater{}())   & R(P-\textgreater{}())   &   & G4 \\ \hline
+4     &    & R(P -\textgreater ()P)  & R(P -\textgreater ()P)  &   &    \\ \hline
+5     &    & S6                      &                         &   &    \\ \hline
+6     & S2 &                         &                         &   & 7  \\ \hline
+7     &    & R(P -\textgreater (P)P) & R(P -\textgreater (P)P) &   &    \\ \hline
+\end{tabular}
+\end{center}
+\end{latin}
