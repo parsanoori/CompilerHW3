@@ -61,14 +61,14 @@ $L \rightarrow L,S | S$
         \\
     };
 
-    \node [block, label=above right: 2] (q2) [below of=q0]
+    \node [block, label=above right: 3] (q3) [below of=q0]
     {
         \( S \rightarrow a . \hfill \$\)
         \\
     };
 
 
-    \node [block, label=above right: 3] (q3)  [right=1cm of q0]
+    \node [block, label=above right: 2] (q2)  [right=1cm of q0]
     {
         \( S \rightarrow (.L) \hfill \$\)
         \\
@@ -82,7 +82,7 @@ $L \rightarrow L,S | S$
     };
 
 
-    \node [block, label=above right: 4] (q4)  [above=1cm of q3]
+    \node [block, label=above right: 4] (q4)  [above=1cm of q2]
     {
         \( S \rightarrow (L.) \hfill \$\)
         \\
@@ -91,13 +91,13 @@ $L \rightarrow L,S | S$
     };
 
 
-    \node [block, label=above right: 7] (q7)  [above of= q4]
+    \node [block, label=above right: 8] (q8)  [above of= q4]
     {
         \( S \rightarrow (L). \hfill \$\)
         \\
     };
 
-    \node [block, label=above right: 8] (q8)  [right=1cm of q4]
+    \node [block, label=above right: 9] (q9)  [right=1cm of q4]
     {
         \( L \rightarrow L,.S \hfill ) \; ,\)
         \\
@@ -108,26 +108,26 @@ $L \rightarrow L,S | S$
     };
 
 
-    \node [block, label=above right: 5] (q5)  [below of=q3]
+    \node [block, label=above right: 5] (q5)  [below of=q2]
     {
         \( L \rightarrow S. \hfill ) \; , \)
         \\
     };
 
 
-    \node [block, label=above left: 6] (q6)  [below of=q5]
+    \node [block, label=above left: 7] (q7)  [below of=q5]
     {
         \( S \rightarrow a. \hfill ) \; , \)
         \\
     };
 
-    \node [block, label=above right: 9] (q9)  [above of = q8]
+    \node [block, label=above right: 11] (q11)  [above of = q9]
     {
         \( L \rightarrow L,S. \hfill ) \; , \)
         \\
     };
 
-    \node [block, label=above right: 10] (q10)  [right=1cm of q3]
+    \node [block, label=above right: 6] (q6)  [right=1cm of q2]
     {
         \( S \rightarrow (.L) \hfill ) \; , \)
         \\
@@ -142,38 +142,38 @@ $L \rightarrow L,S | S$
     };
 
 
-    \node [block, label=above right: 11] (q11)  [below=1cm of q10]
-    {
+    \node [block, label=above right: 10] (q10)  [below=1cm of q6] {
         \( S \rightarrow (L.) \hfill ) \; , \)
         \\
         \( L \rightarrow  L.,S \hfill ) \; , \)
     };
 
 
-    \node [block, label=above right: 12] (q12)  [below of=q11]
+    \node [block, label=above right: 12] (q12)  [below of=q10]
     {
         \( L \rightarrow (L). \hfill ) \; , \)
         \\
     };
 
-    \path[->] (q0) edge[above] node[right] {S} (q1);
-    \path[->] (q0) edge[above] node[right] {a} (q2);
-    \path[->] (q0) edge[above] node[above] {(} (q3);
-    \path[->] (q3) edge[above] node[right] {L} (q4);
-    \path[->] (q3) edge[above] node[right] {S} (q5);
-    \path[->] (q3) edge[bend left,looseness=0.5,out=305,in=255] node[left] {a} (q6);
-    \path[->] (q4) edge[above] node[right] {)} (q7);
-    \path[->] (q4) edge[above] node[above] {,} (q8);
-    \path[->] (q8) edge[above] node[left] {S} (q9);
-    \path[->] (q3) edge[above] node[above] {(} (q10);
-    \path[->] (q8) edge[above] node[left] {(} (q10);
-    \path[->] (q10) edge[loop right,looseness=2] node[right] {(} (q10);
-    \path[->] (q10) edge[above] node[right] {a} (q4);
-    \path[->] (q10) edge[above] node[right] {a} (q6);
-    \path[->] (q10) edge[above] node[left] {L} (q11);
-    \path[->] (q11) edge[bend right,out=280,in=255] node[right] {,} (q8);
-    \path[->] (q11) edge[above] node[left] {)} (q12);
-        
+    \draw[->] (q0) edge[above] node[right] {S} (q1);
+    \draw[->] (q0) edge[above] node[right] {a} (q3);
+    \draw[->] (q0) edge[above] node[above] {(} (q2);
+    \draw[->] (q2) edge[above] node[right] {L} (q4);
+    \draw[->] (q2) edge[above] node[right] {S} (q5);
+    \draw[->] (q2) edge[bend left,looseness=0.5,out=305,in=255] node[left] {a} (q7);
+    \draw[->] (q2) edge[above] node[above] {(} (q6);
+    \draw[->] (q4) edge[above] node[right] {)} (q8);
+    \draw[->] (q4) edge[above] node[above] {,} (q9);
+    \draw[->] (q6) edge[loop right,looseness=2] node[right] {(} (q6);
+    \draw[->] (q6) edge[above] node[right] {a} (q7);
+    \draw[->] (q6) edge[above] node[left] {L} (q10);
+    \draw[->] (q9) edge[above] node[left] {(} (q6);
+    \draw[->] (q9) edge[above] node[left] {S} (q11);
+    \node [xshift=1.8cm] (foo) at (q12.east) {a};
+    \draw[->] (q9.east) to  [out=0,in=90] ([xshift=0.2cm]foo.east) to [out=-90,in=-90](q7.south);
+
+    \draw[->] (q10) edge[above] node[left] {)} (q12);
+    \draw[->] (q10) edge[bend right,out=280,in=255] node[right] {,} (q9);
 
 
 
