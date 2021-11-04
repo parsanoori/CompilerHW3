@@ -122,7 +122,6 @@ $E \rightarrow number \; | \; (S)$
     \draw[->] (q6) edge[above] node[right] {)} (q8);
     \draw[->] (q6) edge[above] node[right] {+} (q5);
 
-
     \node [yshift=1cm] (acc) at (q1.north) {accept};
     \draw[->] (q1) edge[above] node[left] {\$} (acc);
 
@@ -130,4 +129,42 @@ $E \rightarrow number \; | \; (S)$
 \end{latin}
 
 کانفلیکتی وجود ندارد پس این یک گرامر LR(0) است.
+\\ 
+اما گرامر دوم یک گرامر LR(0) نیست. چرا که از وضعیت شروع با خواندن E به وضعیت زیر می‌رسیم.
 
+\begin{latin}
+\begin{tikzpicture}
+    [>=latex, 
+    node distance=1cm, 
+    block/.style={state, rectangle, text width=8em}
+    ]
+
+    \node [block, label=above right: 0] (q0) 
+    {
+        \( S' \rightarrow . S \)
+        \\
+        \( S \rightarrow . E+S\)
+        \\
+        \( S \rightarrow . E \)
+        \\
+        \( E \rightarrow . number \)
+        \\
+        \( E \rightarrow . (S) \)
+        \\
+    };
+
+
+    \node [block, label=above right: 1, right=1cm of q0] (q1) 
+    {
+        \( S \rightarrow E. + S\)
+        \\
+        \( S \rightarrow E. \)
+        \\
+    };
+
+    \draw[->] (q0) edge[above] node[above] {S} (q1);
+ 
+\end{tikzpicture} 
+\end{latin}
+
+پس ما یک \lr{shift/reduce conflict} داریم و در نتیجه این گرامر LR(0) نیست.
