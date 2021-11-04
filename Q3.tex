@@ -210,3 +210,28 @@
         \draw[->] (q12) edge[above] node[right] {)} (q13);
     \end{tikzpicture} 
 \end{latin}
+
+در ادامه، جدول پارس این گرامر را رسم خواهیم کرد، این جدول بدون هیچ کانفلیکتی قابل رسم است، پس این گرامر LR(1) خواهد بود:
+
+\begin{center}
+    \begin{latin}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    State & id & ( & ) & + & \$ & S & E \\ \hline
+    0     & s2 &   &   &   &    &   & g1\\ \hline
+    1     &    &   &   & s3& acc&   &   \\ \hline
+    2     &    & s4&   & r1& r1 &   &   \\ \hline
+    3     & s5 &   &   &   &    &   &   \\ \hline
+    4     & s7 &   &   &   &    &   & g6\\ \hline
+    5     &    &   &   & r3& r3 &   &   \\ \hline
+    6     &    &   & s8& s9&    &   &   \\ \hline
+    7     &    &s10& r1& r1&    &   &   \\ \hline
+    8     &    &   &   & r2& r2 &   &   \\ \hline
+    9     & s11&   &   &   &    &   &   \\ \hline
+    10    & s7 &   &   &   &    &   &g12\\ \hline
+    11    & s2 &   & r3& r3&    &   &   \\ \hline
+    12    & s2 &   &s13& s9&    &   &   \\ \hline
+    13    & s2 &   & r2& r2&    &   &   \\ \hline
+    \end{tabular}
+    \end{latin}
+\end{center}
