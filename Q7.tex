@@ -3,3 +3,131 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+اولی LR(0) است ولی دومی خیر.
+\\
+برای گرامر اول:
+\\
+ابتدا S' را تعریف می‌کنیم که accept و reduce با هم تلاقی نکنن.
+
+\begin{latin}
+\begin{center}
+$S' \rightarrow S$
+\\
+$S \rightarrow S + E | E$
+\\
+$E \rightarrow number \; | \; (S)$
+\\
+\end{center}
+\end{latin}
+
+
+حال اقدام به ساخت آتاماتای LR(0) می‌کنیم.
+\\
+
+\begin{latin}
+\begin{tikzpicture}
+    [>=latex, 
+    node distance=1cm, 
+    block/.style={state, rectangle, text width=8em}
+    ]
+    \node [block, label=above right: 0] (q0) 
+    {
+        \( S' \rightarrow . S \)
+        \\
+        \( S \rightarrow . S+E\)
+        \\
+        \( S \rightarrow . E \)
+        \\
+        \( E \rightarrow . number \)
+        \\
+        \( E \rightarrow . (S) \)
+        \\
+    };
+
+    \node [block, label=above right: 1, above=1cm of q0] (q1)
+    {
+        \(S' \rightarrow S.\)
+        \\
+        \(S \rightarrow S. + E \)
+        \\
+    };
+
+    \node [block, label=above right: 2, right=1cm of q0] (q2)
+    {
+        \(S \rightarrow E.\)
+        \\
+    };
+
+    \node [block, label=above right: 3, below=1cm of q0] (q3)
+    {
+        \(E \rightarrow \; number. \)
+
+    };
+
+    \node [block, label=above right: 4, right=1cm of q3] (q4)
+    {
+        \(S \rightarrow (.S) \)
+        \\
+        \(S \rightarrow .S + E \)
+        \\
+        \(S \rightarrow .E \)
+        \\
+        \(E \rightarrow .number \)
+        \\
+        \(E \rightarrow .(S) \)
+    };
+
+    \node [block, label=above right: 5, right=1cm of q2] (q5)
+    {
+        \(S \rightarrow S + . E  \)
+        \\
+        \(E \rightarrow .number \)
+        \\
+        \(E \rightarrow .(S) \)
+    };
+
+
+    \node [block, label=above right: 6, right=1cm of q4] (q6)
+    {
+        \(S \rightarrow (S.) \)
+        \\
+        \(S \rightarrow S.+ E \)
+        \\
+    };
+
+
+    \node [block, label=above right: 7, above=1cm of q5] (q7)
+    {
+        \(S \rightarrow S + E.  \)
+        \\
+    };
+
+    \node [block, label=above right: 8, below=1cm of q6] (q8)
+    {
+        \(S \rightarrow (S).  \)
+        \\
+    };
+
+    
+    \draw[->] (q0) edge[above] node[right] {S} (q1);
+    \draw[->] (q0) edge[above] node[above] {E} (q2);
+    \draw[->] (q0) edge[above] node[left] {number} (q3);
+    \draw[->] (q0) edge[above] node[above] {(} (q4);
+    \draw[->] (q1) edge[above] node[above] {+} (q5);
+    \draw[->] (q4) edge[above] node[above] {S} (q6);
+    \draw[->] (q4.south west) edge[above] node[below] {number} (q3.south);
+    \draw[->] (q5) edge[above] node[right] {(} (q4);
+    \draw[->] (q5) edge[above] node[right] {S} (q7);
+    \draw[->] (q6) edge[above] node[right] {)} (q8);
+    \draw[->] (q6) edge[above] node[right] {+} (q5);
+
+
+    \node [yshift=1cm] (acc) at (q1.north) {accept};
+    \draw[->] (q1) edge[above] node[left] {\$} (acc);
+
+\end{tikzpicture} 
+\end{latin}
+
+کانفلیکتی وجود ندارد پس این یک گرامر LR(0) است.
+

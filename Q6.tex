@@ -119,6 +119,9 @@ $A \rightarrow rabbit \;| \;flower$
     \draw[->] (q6) edge[above] node[right] {rabbit} (q8);
     \draw[->] (q6) edge[above] node[left] {flower} (q9.west);
 
+    \node [yshift=1cm] (acc) at (q1.north) {accept};
+    \draw[->] (q1) edge[above] node[left] {\$} (acc);
+
 \end{tikzpicture}
 \end{latin}
 

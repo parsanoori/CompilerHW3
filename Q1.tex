@@ -125,6 +125,10 @@ $P \rightarrow () \; | \; (P) \; | \; ()P \; | \; (P)P$
     \path[->] (q5) edge [above] node[above] {)} (q6);
     \path[->] (q6) edge [above] node[above] {(} (q2);
     \path[->] (q6) edge [above] node[right] {P} (q7);
+
+    \node [yshift=1cm] (acc) at (q1.north) {accept};
+    \draw[->] (q1) edge[above] node[left] {\$} (acc);
+
              
 \end{tikzpicture} 
 \end{latin}
