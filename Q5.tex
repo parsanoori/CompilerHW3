@@ -3,3 +3,203 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+الف)
+
+ابتدا برای راحتی کار و اختصار , گرامر را به شکل زیر بازنویسی میکنیم:
+
+
+\begin{center}
+\begin{latin}
+$S \rightarrow Pro$
+\\
+$Pro \rightarrow Tp \; t\_i \; (PL);$
+\\
+$Tp \rightarrow t\_i \; | \; t\_d \; | \;  t\_c$
+\\
+$PL \rightarrow PL,P \;  | \; P$
+\\
+$P \rightarrow Tp \; t\_i$
+\end{latin}
+\end{center}
+
+اکنون میتوانیم نمودار LR مربروط به این گرامر را رسم کنیم.
+
+\begin{latin}
+\begin{tikzpicture}
+    [>=latex, 
+    node distance=3.5cm, 
+    block/.style={state, rectangle, text width=10em}
+    ]
+
+    \node [block, label=above right: 0] (q0)
+    {
+        \(S \rightarrow .Pro\)
+        \\
+        \(Pro \rightarrow .Tp \; t\_i \; (PL);\)
+        \\
+        \(Tp \rightarrow .t\_i\)
+        \\
+        \(Tp \rightarrow .t\_d\)
+        \\
+        \(Tp \rightarrow .t\_c\)
+        \\
+        \(PL \rightarrow .PL,P \)
+        \\
+        \(PL \rightarrow .P \)
+        \\
+        \(P \rightarrow .Tp \; t\_i\)
+        \\
+    };
+
+    \node [block, label=above right: 1] (q1) [above=2cm of q0]
+    {
+        \( S \rightarrow Pro . \hfill \$\)
+        \\
+    };
+    
+    \node [yshift=1cm] (acc) at (q1.north) {accept};
+
+    \node [block, label=above right: 2] (q2) [above right=2cm of q1]
+    {
+        \(Pro \rightarrow Tp.t\_i \; (PL);\)
+        \\
+    };
+
+    \node [block, label=above right: 3] (q3) [right=1cm of q2]
+    {
+        \(Pro \rightarrow Tp \; t\_i . (PL);\)
+        \\
+    };
+    
+    \node [block, label=above right: 4] (q4) [below=1cm of q3]
+    {
+        \(Pro \rightarrow Tp \; t\_i \; ( . PL);\)
+        \\
+        \(PL \rightarrow .PL,P \)
+        \\
+        \(PL \rightarrow .P \)
+        \\
+        \(P \rightarrow .Tp \; t\_i\)
+        \\
+        \(Tp \rightarrow .t\_i\)
+        \\
+        \(Tp \rightarrow .t\_d\)
+        \\
+        \(Tp \rightarrow .t\_c\)
+        \\
+    };
+    
+    \node [block, label=above right: 5] (q5) [below=1cm of q2]
+    {
+        \(Pro \rightarrow Tp \; t\_i \; (PL.);\)
+        \\
+        \(PL \rightarrow  PL.,P \)
+        \\
+    };
+    
+    \node [block, label=above right: 6] (q6) [below=1cm of q5]
+    {
+        \(Pro \rightarrow Tp \; t\_i \; (PL).;\)
+        \\
+    };
+    
+    \node [block, label=above right: 7] (q7) [below=1cm of q6]
+    {
+        \(Pro \rightarrow Tp \; t\_i \; (PL);.;\)
+        \\
+    };
+
+    \node [block, label=above right: 8] (q8) [below=1cm of q7]
+    {
+        \(PL \rightarrow PL,.P \)
+        \\
+        \(P \rightarrow .Tp \; t\_i\)
+        \\
+        \(Tp \rightarrow .t\_i\)
+        \\
+        \(Tp \rightarrow .t\_d\)
+        \\
+        \(Tp \rightarrow .t\_c\)
+        \\
+    };
+    
+    \node [block, label=above right: 9] (q9) [below=1cm of q8]
+    {
+        \(PL \rightarrow PL,P. \)
+        \\
+    };
+    
+    \node [block, label=above right: 10] (q10) [below=1cm of q9]
+    {
+        \(P \rightarrow .Tp \; t\_i  \)
+        \\
+    };
+    
+    \node [block, label=above right: 11] (q11) [below=1cm of q10]
+    {
+        \(P \rightarrow Tp \; t\_i . \)
+        \\
+    };
+    
+    \node [block, label=above right: 12] (q12) [below=1cm of q11]
+    {
+        \(Tp \rightarrow t\_i . \)
+        \\
+    };
+    
+    \node [block, label=above right: 13] (q13) [below=1cm of q12]
+    {
+        \(Tp \rightarrow t\_d . \)
+        \\
+    };
+    
+    \node [block, label=above right: 14] (q14) [below=1cm of q13]
+    {
+        \(Tp \rightarrow t\_c . \)
+        \\
+    };
+    
+    \node [block, label=above right: 15] (q15) [below=17cm of q4]
+    {
+        \(PL \rightarrow P . \)
+        \\
+    };
+    
+    \draw[->] (q0) edge[above] node[left] {Pro} (q1);
+    \draw[->] (q1) edge[above] node[left] {\$} (acc);
+    \draw[->] (q0) edge[bend left,looseness=0.5,out=-30,in=120] node[above=2.5] {Tp} (q2);
+    \draw[->] (q2) edge[right] node[above] {t\_i} (q3);
+    \draw[->] (q3) edge[below] node[left] {(} (q4);
+    \draw[->] (q4) edge[left] node[above] {PL} (q5);
+    \draw[->] (q5) edge[below] node[left] {)} (q6);
+    \draw[->] (q6) edge[right] node[left] {;} (q7);
+    \draw[->] (q5) edge[bend right,looseness=0.20,out=273,in=267] node[left] {,} (q8);
+    \draw[->] (q8) edge[below] node[left] {P} (q9);
+    \draw[->] (q8) edge[below] node[left] {P} (q9);
+    \draw[->] (q8) edge[bend right,looseness=0.25,out=90,in=90] node[right] {,} (q10);
+    \draw[->] (q10) edge[below] node[left] {t\_i} (q11);    
+    \draw[->] (q8) edge[bend right,looseness=0.15,out=273,in=267] node[above] {t\_i} (q12);
+    \draw[->] (q8) edge[bend right,looseness=0.35,out=273,in=267] node[above] {t\_d} (q13);    
+    \draw[->] (q8) edge[bend right,looseness=0.5,out=273,in=267] node[above] {t\_c} (q14);    
+    \draw[->] (q0) edge[bend right,looseness=0.5,out=300,in=245] node[above] {t\_i} (q12);
+    \draw[->] (q0) edge[bend right,looseness=0.5,out=300,in=245] node[above] {t\_d} (q13);    
+    \draw[->] (q0) edge[bend right,looseness=0.5,out=300,in=245] node[above] {t\_c} (q14);
+    \draw[->] (q4) edge[bend left,looseness=0.75,out=0,in=110] node[below=1] {t\_i} (q12);
+    \draw[->] (q4) edge[bend left,looseness=0.75,out=0,in=110] node[below=2] {t\_d} (q13);    
+    \draw[->] (q4) edge[bend left,looseness=0.75,out=0,in=110] node[below=4] {t\_c} (q14);
+    \draw[->] (q4) edge[bend left,looseness=0.35,out=20,in=170] node[right] {P} (q15);
+
+\end{tikzpicture}
+\end{latin}
+
+
+با توجه به این که دیده میشود در برخی موارد با یک مقدار از چند وضعیت به یک وضعیت یکسان میرویم , شاید گمان کنید که با خطای reduce/reduce conflict ممکن است روبرو شویم , اما همانطور که در قسمت ج خواهیم گفت , چنین ایرادی به وجود نخواهد آمد.
+
+همچنین مشکل دیگری که باعث میشود گرامر مورد نظر LR(0) نشود آن است که در یک وضعیت , دو قانون داشته باشیم که:
+
+ ۱ - در یکی از آن ها نقطه در انتهای سمت راست باشد, که معنایش این است که باید پذیرش انجام شود. 
+ 
+ ۲ - و در دیگری نقطه در میانه های سمت راست قانون باشد, که معنایش این است که باید عمل shift انجام داده و به مسیر ادامه دهیم.
+ 
+خوشبختانه در این نمودار این حالت وجود ندارد و بنابراین خطای shift/reduce conflict هم نخواهیم داشت. پس میتوان گفت این گرامر , LR(0) است.
