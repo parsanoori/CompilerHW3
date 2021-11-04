@@ -6,6 +6,389 @@
 
 قسمت الف:
 
+
+\begin{latin}
+    \begin{tikzpicture}
+        [>=latex, 
+        node distance=2.5cm, 
+        block/.style={state, rectangle, text width=8em}
+        ]
+        \node [block, label=above left: 0] (q0) 
+        {
+            \(S \rightarrow .R \hfill \$\)
+            \\
+            \(R \rightarrow .RR \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow . \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 1] (q1) [right=1cm of q0]
+        {
+            \(S \rightarrow R. \hfill \$\)
+            \\
+            \(R \rightarrow R.R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow . \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 2] (q2) [below=1cm of q0]
+        {
+            \(R \rightarrow a. \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 3] (q3) [below=1cm of q1]
+        {
+            \(R \rightarrow (.R) \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 4] (q4) [right=1cm of q1]
+        {
+            \(R \rightarrow RR. \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow . \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill \$a(|* \)
+            \\
+        };
+        
+        \node [block, label=above left: 5] (q5) [below=1cm of q4]
+        {
+            \(R \rightarrow R|.R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow . \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 6] (q6) [above=1cm of q1]
+        {
+            \(R \rightarrow R*. \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 7] (q7) [below=1cm of q3]
+        {
+            \(R \rightarrow (R.) \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 10] (q10pp) [below=1cm of q2]
+        {};
+
+        \node [block, label=above left: 8] (q8) [below=1cm of q10pp]
+        {
+            \(R \rightarrow a. \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 9] (q9) [right=1cm of q4]
+        {
+            \(R \rightarrow (.R) \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 2] (q2p) [above=1cm of q9]
+        {};
+
+        \node [block, label=above left: 10] (q10) [right=1cm of q5]
+        {
+            \(R \rightarrow R|R. \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .*R \hfill \$a(|* \)
+            \\
+            \(R \rightarrow . \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill \$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 2] (q2pp) [below=1cm of q5]
+        {};
+
+        \node [block, label=above left: 11] (q11) [below=1cm of q8]
+        {
+            \(R \rightarrow (R). \hfill \$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 12] (q12) [below=1cm of q11]
+        {
+            \(R \rightarrow RR. \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 13] (q13) [below=1cm of q12]
+        {
+            \(R \rightarrow R|.R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+    
+        \node [block, label=above left: 14] (q14) [below=1cm of q7]
+        {
+            \(R \rightarrow R*. \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 9] (q9p) [below=1cm of q2pp]
+        {};
+
+        \node [block, label=above left: 8] (q8p) [below=1cm of q9p]
+        {};
+
+        \node [block, label=above left: 15] (q15) [right=1cm of q9p]
+        {
+            \(R \rightarrow (R.) \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 10] (q10p) [left=1cm of q6]
+        {};
+
+        \node [block, label=above left: 9] (q9ppp) [below=1cm of q14]
+        {};
+
+        \node [block, label=above left: 16] (q16) [below=1cm of q8p]
+        {
+            \(R \rightarrow R|R. \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow R.* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .RR \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R|R \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .R* \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow . \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .a \hfill )\$a(|* \)
+            \\
+            \(R \rightarrow .(R) \hfill )\$a(|* \)
+            \\
+        };
+
+        \node [block, label=above left: 8] (q8pp) [below=1cm of q9ppp]
+        {};
+
+        \node [block, label=above left: 12] (q12p) [below=1cm of q15]
+        {};
+
+        \node [block, label=above left: 17] (q17) [below=1cm of q12p]
+        {
+            \(R \rightarrow (R). \hfill )\$a(|* \)
+            \\
+        };
+
+        \draw[->] (q0) edge[right] node[above] {R} (q1);
+        \draw[->] (q0) edge[below] node[right] {a} (q2);
+        \draw[->] (q0) edge[below] node[right] {(} (q3);
+        \draw[->] (q1) edge[right] node[above] {R} (q4);
+        \draw[->] (q1) edge[right] node[above] {|} (q5);
+        \draw[->] (q1) edge[above] node[right] {*} (q6);
+        \draw[->] (q1) edge[above] node[right] {a} (q2);
+        \draw[->] (q1) edge[above] node[right] {(} (q3);
+        \draw[->] (q3) edge[above] node[right] {R} (q7);
+        \draw[->] (q3) edge[above] node[above] {a} (q8);
+        \draw[->] (q4) edge[above] node[above] {R} (q9);
+        \draw[->] (q4) edge[loop above,looseness=2] node[above] {R} (q4);
+        \draw[->] (q4) edge[above] node[right] {|} (q5);
+        \draw[->] (q4) edge[above] node[right] {*} (q6);
+        \draw[->] (q4) edge[above] node[right] {a} (q2p);
+        \draw[->] (q4) edge[above] node[right] {(} (q3);
+        \draw[->] (q5) edge[above] node[above] {R} (q10);
+        \draw[->] (q5) edge[above] node[right] {a} (q2pp);
+        \draw[->] (q5) edge[above] node[above] {(} (q3);
+        \draw[->] (q7) edge[above] node[above] {)} (q11);
+        \draw[->] (q7) edge[above] node[above] {R} (q12);
+        \draw[->] (q7) edge[above] node[above] {|} (q13);
+        \draw[->] (q7) edge[above] node[right] {*} (q14);
+        \draw[->] (q7) edge[above] node[right] {a} (q8);
+        \draw[->] (q7) edge[above] node[above] {(} (q9p);
+        \draw[->] (q9p) edge[above] node[above] {R} (q15);
+        \draw[->] (q9p) edge[above] node[right] {a} (q8p);
+        \draw[->] (q9p) edge[loop above,looseness=3] node[above] {a} (q9p);
+        \draw[->] (q10) edge[above] node[right] {R} (q4);
+        \draw[->] (q10) edge[bend left] node[above] {|} (q5);
+        \draw[->] (q10p) edge[right] node[above] {*} (q6);
+        \draw[->] (q10pp) edge[above] node[right] {a} (q2);
+        \draw[->] (q10pp) edge[right] node[above] {(} (q3);
+        \draw[->] (q12) edge[loop above,looseness=1] node[above] {R} (q12);
+        \draw[->] (q12) edge[below] node[right] {|} (q13);
+        \draw[->] (q12) edge[right] node[above] {*} (q14);
+        \draw[->] (q12) edge[above] node[above] {a} (q8);
+        \draw[->] (q12) edge[right] node[below] {(} (q9ppp);
+        \draw[->] (q13) edge[right] node[above] {R} (q16);
+        \draw[->] (q13) edge[right] node[below] {a} (q8pp);
+        \draw[->] (q13) edge[right] node[above] {(} (q9ppp);
+        \draw[->] (q15) edge[below] node[right] {)} (q17);
+        \draw[->] (q15) edge[bend left] node[left] {R} (q12p);
+
+        \draw[->] (q15) edge[left] node[below] {|} (q13);
+        \draw[->] (q15) edge[left] node[below] {*} (q14);
+        \draw[->] (q15) edge[left] node[below] {a} (q8);
+        \draw[->] (q15) edge[left] node[below] {(} (q9);
+        \draw[->] (q16) edge[left] node[below] {R} (q12);
+        \draw[->] (q16) edge[left] node[below] {|} (q13);
+        \draw[->] (q16) edge[left] node[below] {*} (q14);
+        \draw[->] (q16) edge[left] node[below] {a} (q8);
+        \draw[->] (q16) edge[left] node[below] {(} (q9);
+    \end{tikzpicture} 
+\end{latin}
 \begin{center}
     \begin{latin}
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
