@@ -24,6 +24,18 @@ $P \rightarrow () \; | \; (P) \; | \; ()P \; | \; (P)P$
 \end{center}
 
 سپس به ساخت DFA می‌پردازیم.
+\\
+بایستی به این مهم اهتمام بورزیم که با توجه به اینکه گرامر زیر:
+
+\begin{center}
+$S \rightarrow  \epsilon$
+\end{center}
+
+در مجموعه قوانین ما موجود است بایستی وضعیت شروع ماشین ما شناسایی باشد.
+\\
+
+
+
 
 \begin{latin}
 \begin{tikzpicture}
@@ -129,6 +141,8 @@ $P \rightarrow () \; | \; (P) \; | \; ()P \; | \; (P)P$
     \node [yshift=1cm] (acc) at (q1.north) {accept};
     \draw[->] (q1) edge[above] node[left] {\$} (acc);
 
+    \node [yshift=-2cm] (acc) at (q0.south) {accept};
+    \draw[->] (q0) edge[above] node[left] {\$} (acc);
              
 \end{tikzpicture} 
 \end{latin}
@@ -140,7 +154,7 @@ $P \rightarrow () \; | \; (P) \; | \; ()P \; | \; (P)P$
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 State & (  & )                       & \$                      & S & P  \\ \hline
-0     & S2 &                         &                         &   & G1 \\ \hline
+0     & S2 &                         & accept                  &   & G1 \\ \hline
 1     &    &                         & accept                  &   &    \\ \hline
 2     &    & S3                      &                         &   & G5 \\ \hline
 3     & S2 & R(P-\textgreater{}())   & R(P-\textgreater{}())   &   & G4 \\ \hline
