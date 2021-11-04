@@ -3,3 +3,38 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+قسمت الف:
+
+\begin{center}
+    \begin{latin}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+    State  & |        & *        & a        & (        & )        & \$        & S        & R \\ \hline
+    0      & r4       & r4       &s2/r4     &s3/r4     &          &r4         &          & g1\\ \hline
+    1      &s5/r4     &s6/r4     &s2/r4     &s3/r4     &          &acc/r4     &          & g4\\ \hline
+    2      &r5        &r5        &r5        &r5        &          &r5         &          &   \\ \hline
+    3      &r4        &r4        &s8/r4     &s9/r4     &r4        &           &          & g7\\ \hline
+    4      &s5/r1/r4  &s6/r1/r4  &s2/r1/r4  &s3/r1/r4  &          &r1/r4      &          & g4\\ \hline
+    5      &r4        &r4        &s2/r4     &s3/r4     &          &r4         &          &g10\\ \hline
+    6      &r3        &r3        &r3        &r3        &          &r3         &          &   \\ \hline
+    7      &s13/r4    &s14/r4    &s8/r4     &s9/r4     &s11/r4    &           &          &g12\\ \hline
+    8      &r5        &r5        &r5        &r5        &r5        &           &          &   \\ \hline
+    9      &r4        &r4        &s8/r4     &s9/r4     &r4        &           &          &g15\\ \hline
+    10     &s5/r2/r4  &s6/r2/r4  &s2/r2/r4  &s3/r2/r4  &          &r2/r4      &          & g4\\ \hline
+    11     &r6        &r6        &r6        &r6        &          &r6         &          &   \\ \hline
+    12     &s13/r1/r4 &s14/r1/r4 &s8/r1/r4  &s9/r1/r4  &r1/r4     &           &          &g12\\ \hline
+    13     &r4        &r4        &s8/r4     &s9/r4     &r4        &           &          &g16\\ \hline
+    14     &r3        &r3        &r3        &r3        &r3        &           &          &   \\ \hline
+    15     &s13/r4    &s14/r4    &s8/r4     &s9/r4     &s17/r4    &           &          &g12\\ \hline
+    16     &s13/r2/r4 &s14/r2/r4 &s8/r2/r4  &s9/r2/r4  &r2/r4     &           &          &g12\\ \hline
+    17     &r6        &r6        &r6        &r6        &r6        &           &          &   \\ \hline
+    \end{tabular}
+    \end{latin}
+\end{center}
+
+قسمت ب:
+
+کانفلیکت‌ها در جدول مشخص هستند، هر خانه که بیش از یک امکان برای آن وجود دارد، یک کانفلیکت خواهد بود.
+هر گرامری که SLR(1) است حتما LR(1) هم خواهد بود، پس با توجه به این عبارت، اگر گرامری LR(1) نیست پس SLR(1) نیز نخواهد بود.
+در نتیجه گرامر مورد نظر ما SLR(1) هم نیست.
