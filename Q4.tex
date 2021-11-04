@@ -57,9 +57,97 @@
     \\
     6.$T \rightarrow U$
     \\
-    7.$U \rightarrow a$
+    7.$U \rightarrow a | b | c .... | z$
     \\
     8.$U \rightarrow (R)$
     \\
     \end{latin}
+\end{center}
+
+قسمت ه:
+
+\begin{center}
+\begin{latin}
+\begin{tikzpicture}
+    [node distance=1.5cm]
+    \node[state] (R') {R'};
+
+    %right
+    \node[state,below of=R'] (R0) {R};
+    \node[state,yshift=-1.5cm,right of=R0] (S0) {S};
+    \node[state,yshift=-1.5cm,right of=S0] (R3) {S};
+    \node[state,yshift=-1.5cm,right of=R3] (S4) {S};
+    \node[state,yshift=-1.5cm,right of=S4] (T3) {T};
+    \node[state,yshift=-1.5cm,right of=T3] (U2) {U};
+    \node[state,below of=U2] (E) {e};
+    
+    %left of S0
+    \node[state,left of=S0] (OR0) {|};
+    \node[state,left of=OR0] (R1) {R};
+    
+    \node[state,below of=OR0] (S1) {S};
+    \node[state,left of=S1] (OR1) {|};
+    \node[state,left of=OR1] (R2) {R};
+
+    %left
+    \node[state,yshift=-1.5cm,left of=R2] (S2) {S};
+    \node[state,yshift=-1.5cm,left of=S2] (T1) {T};
+    \node[state,yshift=-1.5cm,left of=T1] (U1) {U};
+    \node[state,below of=U1] (A) {a};
+
+    \node[state,xshift=-1cm,below of=S1] (S3) {S};
+    \node[state,xshift=1cm,below of=S1] (T0) {T};
+
+    \node[state,xshift=1cm,below of=T0] (U0) {U};
+    \node[state,xshift=1cm,below of=U0] (D) {d};
+
+    \node[state,xshift=1cm,below of=S3] (T2) {T};
+    \node[state,xshift=-1cm,below of=S3] (S5) {S};
+
+    \node[state,xshift=-1cm,below of=S5] (T4) {T};
+    \node[state,xshift=-1cm,below of=T4] (U3) {U};
+    \node[state,xshift=-1cm,below of=U3] (B) {b};
+
+
+    \node[state,xshift=-1cm,below of=T2] (T5) {T};
+    \node[state,xshift=1cm,below of=T2] (ST) {*};
+
+    \node[state,below of=T5] (U4) {U};
+    \node[state,below of=U4] (C) {c};
+
+    \draw[-] (R') to (R0);
+    \draw[-] (R0) to (R1);
+    \draw[-] (R0) to (OR0);
+    \draw[-] (R0) to (S0);
+    \draw[-] (R1) to (R2);
+    \draw[-] (R1) to (OR1);
+    \draw[-] (R1) to (S1);
+    \draw[-] (S0) to (R3);
+    \draw[-] (R2) to (S2);
+    \draw[-] (S1) to (S3);
+    \draw[-] (S1) to (T0);
+    \draw[-] (R3) to (S4);
+    \draw[-] (S2) to (T1);
+    \draw[-] (S3) to (S5);
+    \draw[-] (S3) to (T2);
+    \draw[-] (T0) to (U0);
+    \draw[-] (S4) to (T3);
+    \draw[-] (T1) to (U1);
+    \draw[-] (S5) to (T4);
+    \draw[-] (T2) to (T5);
+    \draw[-] (T2) to (ST);
+    \draw[-] (U0) to (D);
+    \draw[-] (T3) to (U2);
+    \draw[-] (U1) to (A);
+    \draw[-] (T4) to (U3);
+    \draw[-] (U3) to (B);
+    \draw[-] (T5) to (U4);
+    \draw[-] (U4) to (C);
+    \draw[-] (U1) to (A);
+    \draw[-] (U2) to (E);
+
+
+
+\end{tikzpicture}
+\end{latin}
 \end{center}
