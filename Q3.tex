@@ -4,3 +4,72 @@
 
 
 \پاسخ{}
+
+این گرامر LR(1) است. برای اثبات، آتاماتا و جدول پارس را رسم می‌کنیم تا عدم وجود کانفلیکت را نشان دهیم.
+
+گرامر را به این صورت بازنویسی می‌کنیم:
+
+\begin{center}
+\begin{latin}
+0.$S \rightarrow E$
+\\
+1.$E \rightarrow id$
+\\
+2.$E \rightarrow id(E)$
+\\
+3.$E \rightarrow E+id$
+\end{latin}
+\end{center}
+
+که با توجه به گرامر نوشته شده، می‌توان این آتاماتا را رسم کرد:
+
+\begin{latin}
+    \begin{tikzpicture}
+        [>=latex, 
+        node distance=2.5cm, 
+        block/.style={state, rectangle, text width=8em}
+        ]
+        \node [block, label=above left: 0] (q0) 
+        {
+            \(S \rightarrow .E \hfill \$\)
+            \\
+            \(E \rightarrow .id \hfill \$\)
+            \\
+            \(E \rightarrow .id \hfill +\)
+            \\
+            \(E \rightarrow .id(E) \hfill \$\)
+            \\
+            \(E \rightarrow .id(E) \hfill +\)
+            \\
+            \(E \rightarrow .E+id \hfill \$\)
+            \\
+            \(E \rightarrow .E+id \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 1] (q1) [right=1cm of q0]
+        {
+            \(S \rightarrow E. \hfill \$\)
+            \\
+            \(E \rightarrow E.+id \hfill \$\)
+            \\
+            \(E \rightarrow E.+id \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 2] (q2) [below=1cm of q0]
+        {
+            \(E \rightarrow id. \hfill \$\)
+            \\
+            \(E \rightarrow id. \hfill +\)
+            \\
+            \(E \rightarrow id.(E) \hfill \$\)
+            \\
+            \(E \rightarrow id.(E) \hfill +\)
+            \\
+        };
+    
+        \draw[->] (q0) edge[right] node[above] {E} (q1);
+        \draw[->] (q0) edge[below] node[right] {id} (q2);
+    \end{tikzpicture} 
+\end{latin}
