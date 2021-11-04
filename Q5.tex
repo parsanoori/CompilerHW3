@@ -13,15 +13,38 @@
 \begin{latin}
 $S \rightarrow Pro$
 \\
-$Pro \rightarrow Tp \; t\_i \; (PL);$
+$Pro \rightarrow Tp \; t\_id \; (PL);$
 \\
 $Tp \rightarrow t\_i \; | \; t\_d \; | \;  t\_c$
 \\
 $PL \rightarrow PL,P \;  | \; P$
 \\
-$P \rightarrow Tp \; t\_i$
+$P \rightarrow Tp \; t\_id$
 \end{latin}
 \end{center}
+
+سپس قوانین آن را جداگانه مینویسیم:
+
+\begin{flushleft}
+\begin{latin}
+$1 -  S \rightarrow Pro$
+\\
+$2 -  Pro \rightarrow Tp \; t\_id \; (PL);$
+\\
+$3 -  Tp \rightarrow t\_i $
+\\
+$4 -  Tp \rightarrow t\_d $
+\\
+$5 -  Tp \rightarrow t\_c $
+\\
+$6 -  PL \rightarrow PL,P$
+\\
+$7 -  PL \rightarrow P$
+\\
+$8 -  P \rightarrow Tp \; t\_id$
+\\
+\end{latin}
+\end{flushleft}
 
 اکنون میتوانیم نمودار LR مربروط به این گرامر را رسم کنیم.
 
@@ -36,19 +59,13 @@ $P \rightarrow Tp \; t\_i$
     {
         \(S \rightarrow .Pro\)
         \\
-        \(Pro \rightarrow .Tp \; t\_i \; (PL);\)
+        \(Pro \rightarrow .Tp \; t\_id \; (PL);\)
         \\
         \(Tp \rightarrow .t\_i\)
         \\
         \(Tp \rightarrow .t\_d\)
         \\
         \(Tp \rightarrow .t\_c\)
-        \\
-        \(PL \rightarrow .PL,P \)
-        \\
-        \(PL \rightarrow .P \)
-        \\
-        \(P \rightarrow .Tp \; t\_i\)
         \\
     };
 
@@ -62,19 +79,19 @@ $P \rightarrow Tp \; t\_i$
 
     \node [block, label=above right: 2] (q2) [above right=2cm of q1]
     {
-        \(Pro \rightarrow Tp.t\_i \; (PL);\)
+        \(Pro \rightarrow Tp.t\_id \; (PL);\)
         \\
     };
 
     \node [block, label=above right: 3] (q3) [right=1cm of q2]
     {
-        \(Pro \rightarrow Tp \; t\_i . (PL);\)
+        \(Pro \rightarrow Tp \; t\_id . (PL);\)
         \\
     };
     
     \node [block, label=above right: 4] (q4) [below=1cm of q3]
     {
-        \(Pro \rightarrow Tp \; t\_i \; ( . PL);\)
+        \(Pro \rightarrow Tp \; t\_id \; ( . PL);\)
         \\
         \(PL \rightarrow .PL,P \)
         \\
@@ -92,7 +109,7 @@ $P \rightarrow Tp \; t\_i$
     
     \node [block, label=above right: 5] (q5) [below=1cm of q2]
     {
-        \(Pro \rightarrow Tp \; t\_i \; (PL.);\)
+        \(Pro \rightarrow Tp \; t\_id \; (PL.);\)
         \\
         \(PL \rightarrow  PL.,P \)
         \\
@@ -100,13 +117,13 @@ $P \rightarrow Tp \; t\_i$
     
     \node [block, label=above right: 6] (q6) [below=1cm of q5]
     {
-        \(Pro \rightarrow Tp \; t\_i \; (PL).;\)
+        \(Pro \rightarrow Tp \; t\_id \; (PL).;\)
         \\
     };
     
     \node [block, label=above right: 7] (q7) [below=1cm of q6]
     {
-        \(Pro \rightarrow Tp \; t\_i \; (PL);.;\)
+        \(Pro \rightarrow Tp \; t\_id \; (PL);.;\)
         \\
     };
 
@@ -114,7 +131,7 @@ $P \rightarrow Tp \; t\_i$
     {
         \(PL \rightarrow PL,.P \)
         \\
-        \(P \rightarrow .Tp \; t\_i\)
+        \(P \rightarrow .Tp \; t\_id\)
         \\
         \(Tp \rightarrow .t\_i\)
         \\
@@ -132,13 +149,13 @@ $P \rightarrow Tp \; t\_i$
     
     \node [block, label=above right: 10] (q10) [below=1cm of q9]
     {
-        \(P \rightarrow .Tp \; t\_i  \)
+        \(P \rightarrow Tp \;. t\_id  \)
         \\
     };
     
     \node [block, label=above right: 11] (q11) [below=1cm of q10]
     {
-        \(P \rightarrow Tp \; t\_i . \)
+        \(P \rightarrow Tp \; t\_id . \)
         \\
     };
     
@@ -169,7 +186,7 @@ $P \rightarrow Tp \; t\_i$
     \draw[->] (q0) edge[above] node[left] {Pro} (q1);
     \draw[->] (q1) edge[above] node[left] {\$} (acc);
     \draw[->] (q0) edge[bend left,looseness=0.5,out=-30,in=120] node[above=2.5] {Tp} (q2);
-    \draw[->] (q2) edge[right] node[above] {t\_i} (q3);
+    \draw[->] (q2) edge[right] node[above] {t\_id} (q3);
     \draw[->] (q3) edge[below] node[left] {(} (q4);
     \draw[->] (q4) edge[left] node[above] {PL} (q5);
     \draw[->] (q5) edge[below] node[left] {)} (q6);
@@ -178,7 +195,7 @@ $P \rightarrow Tp \; t\_i$
     \draw[->] (q8) edge[below] node[left] {P} (q9);
     \draw[->] (q8) edge[below] node[left] {P} (q9);
     \draw[->] (q8) edge[bend right,looseness=0.25,out=90,in=90] node[right] {,} (q10);
-    \draw[->] (q10) edge[below] node[left] {t\_i} (q11);    
+    \draw[->] (q10) edge[below] node[left] {t\_id} (q11);    
     \draw[->] (q8) edge[bend right,looseness=0.15,out=273,in=267] node[above] {t\_i} (q12);
     \draw[->] (q8) edge[bend right,looseness=0.35,out=273,in=267] node[above] {t\_d} (q13);    
     \draw[->] (q8) edge[bend right,looseness=0.5,out=273,in=267] node[above] {t\_c} (q14);    
@@ -203,3 +220,71 @@ $P \rightarrow Tp \; t\_i$
  ۲ - و در دیگری نقطه در میانه های سمت راست قانون باشد, که معنایش این است که باید عمل shift انجام داده و به مسیر ادامه دهیم.
  
 خوشبختانه در این نمودار این حالت وجود ندارد و بنابراین خطای shift/reduce conflict هم نخواهیم داشت. پس میتوان گفت این گرامر , LR(0) است.
+
+ب)
+
+ابتدا جدول پارس را برای این گرامر رسم میکنیم:
+
+\begin{center}
+\begin{latin}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+State & (   & )                      & ,   & ;                      & t\_i                   & t\_d & t\_c \\ \hline
+0     &     &                        &     &                        & S12                    & S13  & S14  \\ \hline
+1     & ACC & ACC                    & ACC & ACC                    & ACC                    & ACC  & ACC  \\ \hline
+2     &     &                        &     &                        & S3                     &      &      \\ \hline
+3     & S4  &                        &     &                        &                        &      &      \\ \hline
+4     &     & S8                     &     &                        & S12                    & S13  & S14  \\ \hline
+5     &     & S6                     & S8  &                        &                        &      &      \\ \hline
+6     &     &                        &     & S7                     &                        &      &      \\ \hline
+7     & R2  & R2                     & R2  & R2                     & R2                     & R2   & R2   \\ \hline
+8     &     &                        & S10 &                        & S12                    & S13  & S14  \\ \hline
+9     & R6  & R6                     & R6  & R6                     & R6                     & R6   & R6   \\ \hline
+10    &     &                        &     &                        &                        &      &      \\ \hline
+11    & R8  & R8                     & R8  & R8                     & R8                     & R8   & R8   \\ \hline
+12    & R3  & R3                     & R3  & R3                     & R3                     & R3   & R3   \\ \hline
+11    & R4  & R4                     & R4  & R4                     & R4                     & R4   & R4   \\ \hline
+11    & R5  & R5                     & R5  & R5                     & R5                     & R5   & R5   \\ \hline
+11    & R7  & R7                     & R7  & R7                     & R7                     & R7   & R7   \\ \hline
+
+\end{tabular}
+\end{latin}
+\end{center}
+
+ادامه جدول پارس را در اینجا مشاهده میکنید:
+
+\begin{center}
+\begin{latin}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+State & t\_id  & S                           & Pro                    & Tp                     & PL   & P   \\ \hline
+0     &        &                             & G1                     & G2                     &      &     \\ \hline
+1     & ACC    & ACC                         & ACC                    & ACC                    & ACC  & ACC \\ \hline
+2     &        &                             &                        &                        &      &     \\ \hline
+3     &        &                             &                        &                        &      &     \\ \hline
+4     &        &                             &                        &                        & G5   & G15 \\ \hline
+5     &        &                             &                        &                        &      &     \\ \hline
+6     & S6     &                             &                        &                        &      &     \\ \hline
+7     & R2     & R2                          & R2                     & R2                     & R2   & R2  \\ \hline
+8     &        &                             &                        &                        &      &     \\ \hline
+9     & R6     & R6                          & R6                     & R6                     & R6   & R6  \\ \hline
+10    & S11    &                             &                        &                        &      &     \\ \hline
+11    & R8     & R8                          & R8                     & R8                     & R8   & R8  \\ \hline
+12    & R3     & R3                          & R3                     & R3                     & R3   & R3  \\ \hline
+13    & R4     & R4                          & R4                     & R4                     & R4   & R4  \\ \hline
+14    & R5     & R5                          & R5                     & R5                     & R5   & R5  \\ \hline
+15    & R7     & R7                          & R7                     & R7                     & R7   & R7  \\ \hline
+
+\end{tabular}
+\end{latin}
+\end{center}
+
+
+
+
+
+
+
+ج)
+
+
