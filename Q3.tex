@@ -4,3 +4,234 @@
 
 
 \پاسخ{}
+
+این گرامر LR(1) است. برای اثبات، آتاماتا و جدول پارس را رسم می‌کنیم تا عدم وجود کانفلیکت را نشان دهیم.
+
+گرامر را به این صورت بازنویسی می‌کنیم:
+
+\begin{center}
+\begin{latin}
+0.$S \rightarrow E$
+\\
+1.$E \rightarrow id$
+\\
+2.$E \rightarrow id(E)$
+\\
+3.$E \rightarrow E+id$
+\end{latin}
+\end{center}
+
+که با توجه به گرامر نوشته شده، می‌توان این آتاماتا را رسم کرد:
+
+\begin{latin}
+    \begin{tikzpicture}
+        [>=latex, 
+        node distance=2.5cm, 
+        block/.style={state, rectangle, text width=8em}
+        ]
+        \node [block, label=above left: 0] (q0) 
+        {
+            \(S \rightarrow .E \hfill \$\)
+            \\
+            \(E \rightarrow .id \hfill \$\)
+            \\
+            \(E \rightarrow .id \hfill +\)
+            \\
+            \(E \rightarrow .id(E) \hfill \$\)
+            \\
+            \(E \rightarrow .id(E) \hfill +\)
+            \\
+            \(E \rightarrow .E+id \hfill \$\)
+            \\
+            \(E \rightarrow .E+id \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 1] (q1) [right=1cm of q0]
+        {
+            \(S \rightarrow E. \hfill \$\)
+            \\
+            \(E \rightarrow E.+id \hfill \$\)
+            \\
+            \(E \rightarrow E.+id \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 2] (q2) [below=1cm of q0]
+        {
+            \(E \rightarrow id. \hfill \$\)
+            \\
+            \(E \rightarrow id. \hfill +\)
+            \\
+            \(E \rightarrow id.(E) \hfill \$\)
+            \\
+            \(E \rightarrow id.(E) \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 3] (q3) [right=1cm of q1]
+        {
+            \(E \rightarrow E+.id \hfill \$\)
+            \\
+            \(E \rightarrow E+.id \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 4] (q4) [below=1cm of q2]
+        {
+            \(E \rightarrow id(.E) \hfill \$\)
+            \\
+            \(E \rightarrow id(.E) \hfill +\)
+            \\
+            \(E \rightarrow .id \hfill +\)
+            \\
+            \(E \rightarrow .id \hfill )\)
+            \\
+            \(E \rightarrow .id(E) \hfill +\)
+            \\
+            \(E \rightarrow .id(E) \hfill )\)
+            \\
+            \(E \rightarrow .E+id \hfill +\)
+            \\
+            \(E \rightarrow .E+id \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 5] (q5) [right=1cm of q3]
+        {
+            \(E \rightarrow E+id. \hfill \$\)
+            \\
+            \(E \rightarrow E+id. \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 6] (q6) [below=1cm of q4]
+        {
+            \(E \rightarrow id(E.) \hfill \$\)
+            \\
+            \(E \rightarrow id(E.) \hfill +\)
+            \\
+            \(E \rightarrow E.+id \hfill +\)
+            \\
+            \(E \rightarrow E.+id \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 7] (q7) [right=1cm of q4]
+        {
+            \(E \rightarrow id.(E) \hfill +\)
+            \\
+            \(E \rightarrow id.(E) \hfill )\)
+            \\
+            \(E \rightarrow id. \hfill +\)
+            \\
+            \(E \rightarrow id. \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 8] (q8) [right=1cm of q6]
+        {
+            \(E \rightarrow id(E). \hfill \$\)
+            \\
+            \(E \rightarrow id(E). \hfill +\)
+            \\
+        };
+
+        \node [block, label=above left: 9] (q9) [below=1cm of q6]
+        {
+            \(E \rightarrow E+.id \hfill +\)
+            \\
+            \(E \rightarrow E+.id \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 10] (q10) [right=1cm of q7]
+        {
+            \(E \rightarrow id(.E) \hfill +\)
+            \\
+            \(E \rightarrow id(.E) \hfill )\)
+            \\
+            \(E \rightarrow .id \hfill +\)
+            \\
+            \(E \rightarrow .id \hfill )\)
+            \\
+            \(E \rightarrow .id(E) \hfill +\)
+            \\
+            \(E \rightarrow .id(E) \hfill )\)
+            \\
+            \(E \rightarrow .E+id \hfill +\)
+            \\
+            \(E \rightarrow .E+id \hfill )\)
+            \\
+        };
+        
+        \node [block, label=above left: 11] (q11) [right=1cm of q9]
+        {
+            \(E \rightarrow E+id. \hfill +\)
+            \\
+            \(E \rightarrow E+id. \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 12] (q12) [right=1cm of q10]
+        {
+            \(E \rightarrow id(E.) \hfill +\)
+            \\
+            \(E \rightarrow id(E.) \hfill )\)
+            \\
+            \(E \rightarrow E.+id \hfill +\)
+            \\
+            \(E \rightarrow E.+id \hfill )\)
+            \\
+        };
+
+        \node [block, label=above left: 13] (q13) [above=1cm of q12]
+        {
+            \(E \rightarrow id(E). \hfill +\)
+            \\
+            \(E \rightarrow id(E). \hfill )\)
+            \\
+        };
+    
+        \draw[->] (q0) edge[right] node[above] {E} (q1);
+        \draw[->] (q0) edge[below] node[right] {id} (q2);
+        \draw[->] (q1) edge[right] node[above] {+} (q3);
+        \draw[->] (q2) edge[below] node[right] {(} (q4);
+        \draw[->] (q3) edge[right] node[above] {id} (q5);
+        \draw[->] (q4) edge[below] node[right] {E} (q6);
+        \draw[->] (q4) edge[right] node[above] {id} (q7);
+        \draw[->] (q6) edge[right] node[above] {)} (q8);
+        \draw[->] (q6) edge[below] node[right] {+} (q9);
+        \draw[->] (q7) edge[right] node[above] {(} (q10);
+        \draw[->] (q9) edge[right] node[above] {id} (q11);
+        \draw[->] (q10) edge[right] node[above] {E} (q12);
+        \draw[->] (q10) edge[bend left,looseness=0.5,out=320,in=255] node[above] {id} (q7);
+        \draw[->] (q12) edge[bend left,looseness=1,in=100] node[above] {+} (q9);
+        \draw[->] (q12) edge[above] node[right] {)} (q13);
+    \end{tikzpicture} 
+\end{latin}
+
+در ادامه، جدول پارس این گرامر را رسم خواهیم کرد، این جدول بدون هیچ کانفلیکتی قابل رسم است، پس این گرامر LR(1) خواهد بود:
+
+\begin{center}
+    \begin{latin}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    State & id & ( & ) & + & \$ & S & E \\ \hline
+    0     & s2 &   &   &   &    &   & g1\\ \hline
+    1     &    &   &   & s3& acc&   &   \\ \hline
+    2     &    & s4&   & r1& r1 &   &   \\ \hline
+    3     & s5 &   &   &   &    &   &   \\ \hline
+    4     & s7 &   &   &   &    &   & g6\\ \hline
+    5     &    &   &   & r3& r3 &   &   \\ \hline
+    6     &    &   & s8& s9&    &   &   \\ \hline
+    7     &    &s10& r1& r1&    &   &   \\ \hline
+    8     &    &   &   & r2& r2 &   &   \\ \hline
+    9     & s11&   &   &   &    &   &   \\ \hline
+    10    & s7 &   &   &   &    &   &g12\\ \hline
+    11    & s2 &   & r3& r3&    &   &   \\ \hline
+    12    & s2 &   &s13& s9&    &   &   \\ \hline
+    13    & s2 &   & r2& r2&    &   &   \\ \hline
+    \end{tabular}
+    \end{latin}
+\end{center}
